@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sneakers Club</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    background: url('https://i.ibb.co/bR8R/1G-0895.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-content {
+    background: rgba(0,0,0,0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin: 0;
+}
+
+.hero p {
+    font-size: 18px;
+}
+
+.btn {
+    margin-top: 15px;
+    padding: 12px 25px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+/* PRODUCTS */
+.section {
+    padding: 30px 15px;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+}
+
+.card {
+    min-width: 250px;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.card button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+/* CART FORM */
+.form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+input, textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+/* WHATSAPP BUTTON */
+.whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: green;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Sneakers Club</h1>
+    <p>Fresh Finds, Best Prices</p>
+    <button class="btn" onclick="scrollToProducts()">Shop Now</button>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" id="products">
+<h2>Our Sneakers</h2>
+
+<div class="carousel">
+
+<div class="card">
+<img src="https://i.ibb.co/vWWntRV/IMG-2094.jpg">
+<h3>Nike Style Sneakers</h3>
+<p>Call: 7015464191</p>
+<p>Items: Sneakers, Casual Shoes</p>
+<button onclick="addToCart('Nike Style Sneakers')">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://i.ibb.co/0V1J5dbW/IMG-2100.jpg">
+<h3>Sport Sneakers</h3>
+<p>Call: 7015464191</p>
+<p>Items: Running Shoes</p>
+<button onclick="addToCart('Sport Sneakers')">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://i.ibb.co/xqprdTbG/IMG-2097.jpg">
+<h3>White Sneakers</h3>
+<p>Call: 7015464191</p>
+<p>Items: Casual Wear</p>
+<button onclick="addToCart('White Sneakers')">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://i.ibb.co/PZHcrp0W/IMG-2096.jpg">
+<h3>Street Style Shoes</h3>
+<p>Call: 7015464191</p>
+<p>Items: Streetwear</p>
+<button onclick="addToCart('Street Style Shoes')">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://i.ibb.co/4nccbYSg/IMG-2098.jpg">
+<h3>Trendy Sneakers</h3>
+<p>Call: 7015464191</p>
+<p>Items: Fashion Shoes</p>
+<button onclick="addToCart('Trendy Sneakers')">Add to Cart</button>
+</div>
+
+</div>
+</section>
+
+<!-- CART FORM -->
+<section class="section">
+<h2>Place Your Order</h2>
+
+<div class="form">
+<form onsubmit="placeOrder(event)">
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="text" id="phone" placeholder="Phone Number" required>
+<textarea id="cartItems" placeholder="Cart Items" required></textarea>
+<button type="submit" class="btn">Submit Order</button>
+</form>
+</div>
+
+</section>
+
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/7015464191" target="_blank">💬</a>
+
+<script>
+let cart = [];
+
+function scrollToProducts() {
+    document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+}
+
+function addToCart(item) {
+    cart.push(item);
+    document.getElementById("cartItems").value = cart.join(", ");
+}
+
+function placeOrder(e) {
+    e.preventDefault();
+    
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let items = document.getElementById("cartItems").value;
+
+    let message = `Order from Sneakers Club\nName: ${name}\nPhone: ${phone}\nItems: ${items}`;
+
+    window.open(`https://wa.me/7015464191?text=${encodeURIComponent(message)}`);
+
+    alert("Order Sent on WhatsApp!");
+}
+</script>
+
+</body>
+</html>
